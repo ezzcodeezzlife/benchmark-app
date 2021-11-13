@@ -1,6 +1,6 @@
 # benchmark-app
 
-Repo for: [benchmarkapp.herokuapp.com/](http://benchmarkapphosting2.herokuapp.com/)
+Repo for: [benchmarkapp.herokuapp.com/](https://benchmarkapphosting2.herokuapp.com/)
 
 What is Benchmark?
 
