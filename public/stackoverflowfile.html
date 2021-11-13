@@ -1,0 +1,43 @@
+<head>
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="">
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+        <script src="OverPassLayer.bundle.js"></script> 
+      </head>
+    </head>
+    <body>
+        <div id="map" style="width: 100%; height: 90%; position: relative; outline: none;"></div>
+
+        <script>
+
+            var tiles = L.tileLayer('https://a.tile.openstreetmap.de/{z}/{x}/{y}.png', {
+            minZoom: 15,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }),
+            latlng = L.latLng(52.5207,13.4093);
+
+            var map = L.map('map',{center: latlng, 
+                        zoom: 17, 
+                        layers: [tiles],
+                        maxZoom: 18,
+                        preferCanvas: false,
+                        });
+
+            var icon = new L.Icon({
+                iconUrl: 'leaf-green.png', //https://leafletjs.com/examples/custom-icons/leaf-green.png
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+
+            var opl = new L.OverPassLayer({
+                query: 'node["amenity"="bench"]({{bbox}});out;', //show all Benches on Map
+                markerIcon: icon,
+                minZoom: 13,
+            });
+	        map.addLayer(opl);
+        </script>
+    </body>
+</head>

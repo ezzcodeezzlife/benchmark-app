@@ -1,0 +1,192 @@
+head
+  title Benchmark
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  // Load an icon library to show a hamburger menu (bars) on small screens
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  link(rel='shortcut icon' type='image/x-icon' href='docs/images/favicon.ico')
+  link(rel='stylesheet' href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' integrity='sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==' crossorigin='')
+  script(src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js' integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==' crossorigin='')
+  script(data-ad-client='ca-pub-5766675824203736' async='' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')
+
+  //adsense
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8251732556629149" crossorigin="anonymous"></script>
+
+  style.
+    body{
+        margin: 0 ;
+    }
+    /* Style the navigation menu */
+    .topnav {
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+    }
+    /* Hide the links inside the navigation menu (except for logo/home) */
+    .topnav #myLinks {
+    display: none;
+    }
+    /* Style navigation menu links */
+    .topnav a {
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    }
+    /* Style the hamburger menu */
+    .topnav a.icon {
+    background: #4CAF50;;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    }
+    /* Add a grey background color on mouse-over */
+    .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+    }
+    /* Style the active link (or home/logo) */
+    .active {
+    background-color: #4CAF50;
+    color: white;
+    }
+    table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    }
+    th, td {
+    padding: 15px;
+    }
+    .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #6c3 50%, #4CAF50 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+    }
+    .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+    }
+    .bg3 {
+    animation-duration:5s;
+    }
+    @keyframes slide {
+    0% {
+    transform:translateX(-25%);
+    }
+    100% {
+    transform:translateX(25%);
+    }
+    }
+// Top Navigation Menu
+.topnav
+  img(src='../logoicon.png' alt='logocion' style='padding-top:4px;padding-left:4px;width:40px;height:40px; float:left;')
+  a.active(href='/' style='font-family: Arial, Helvetica, sans-serif;')
+    b
+    | Benchmark
+  // Navigation links (hidden by default)
+  #myLinks
+    a(href='/') Benches Map
+    a(href='/add') Add Bench
+    a(href='/leaderboard') Leaderboard
+    a(href='/fullscreenmap') Fullscreenmap
+  // "Hamburger menu" / "Bar icon" to toggle the navigation links
+  a.icon(href='javascript:void(0);' onclick='myFunction()')
+    i.fa.fa-bars
+
+
+#map( style='width: 100%; height: 75%; position: relative; outline: none;')
+
+script.
+
+
+  function myFunction() {
+  var x = document.getElementById("myLinks");
+  if (x.style.display === "block") {
+  x.style.display = "none";
+  } else {
+  x.style.display = "block";
+  }
+  }
+.bg
+.bg.bg2
+.bg.bg3
+div(style='background-color:#4CAF50; height: 0.5vh;')
+
+
+center
+  
+    h2(style='color:white')   #{ nickname } 👤 Profile
+each entry in tabledata
+    div(style="color:white; padding:10px;  margin:10px; background-color:#4CAF50;")
+        span #{entry.beschreibung}  <br>
+        span #{entry.lat} #{entry.long} 
+
+    
+center.
+    <div style="width:80%;" id="wpac-comment"></div>
+<a href="https://widgetpack.com" class="wpac-cr"></a>
+
+script.
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({widget: 'Comment', id: 32433});
+    (function() {
+        if ('WIDGETPACK_LOADED' in window) return;
+        WIDGETPACK_LOADED = true;
+        var mc = document.createElement('script');
+        mc.type = 'text/javascript';
+        mc.async = true;
+        mc.src = 'https://embed.widgetpack.com/widget.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+
+  var tiles = L.tileLayer('https://a.tile.openstreetmap.de/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }),
+  latlng = L.latLng(50.2320, 8.4574);
+  var map = L.map('map',{center: latlng,
+  zoom: 1.5,
+  layers: [tiles],
+  maxZoom: 18,
+  preferCanvas: false,
+  });
+
+    var x = !{datajson}
+  console.log(x);
+
+   for (var i=0; i<x.length; i++) {
+           
+        var lon = x[i]["long"];
+        var lat = x[i]["lat"];
+            
+            
+        var markerLocation = new L.LatLng(lat, lon);
+        var marker = new L.Marker(markerLocation);
+
+        var popup = L.popup()
+            .setContent( x[i]["beschreibung"]);
+        marker.bindPopup(popup);
+
+       map.addLayer(marker);
+         
+        
+   }
+         
+  /*
+  for (var i = 0; i < x.length; i++) {
+  var a = L.marker([
+  parseFloat(x[i].lat),
+  parseFloat(x[i].long)
+  ], {icon: icon})
+  .bindPopup(x[i].beschreibung + " 👦 from: " +  x[i].nickname )
+  markers.addLayer(a);
+  }
+  map.addLayer(markers);
+  */
