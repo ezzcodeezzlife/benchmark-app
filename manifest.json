@@ -1,6 +1,6 @@
 {
-    "name": "EmergencyCard",
-    "short_name": "EmergencyCard",
+    "name": "Benchmark",
+    "short_name": "Benchmark",
     "start_url": "/", 
     "display": "fullscreen",
     "background_color": "#ffffff",
