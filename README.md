@@ -13,6 +13,10 @@ Benchmark is an App that allows you to find Benches in no time. This App is perf
 
 ## Installation
 ```
+git clone https://github.com/ezzcodeezzlife/benchmark-app.git
+
+cd benchmark-app
+
 npm i 
 npm run start
 ```
