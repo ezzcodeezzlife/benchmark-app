@@ -1,0 +1,198 @@
+<html>
+<head>
+	<title>Benchmark</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="">
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+	<script data-ad-client="ca-pub-5766675824203736" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<style>
+	/* Style the navigation menu */
+		.topnav {
+		  overflow: hidden;
+		  background-color: #333;
+		  position: relative;
+		}
+		
+		/* Hide the links inside the navigation menu (except for logo/home) */
+		.topnav #myLinks {
+		  display: none;
+		}
+		
+		/* Style navigation menu links */
+		.topnav a {
+		  color: white;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		  font-size: 17px;
+		  display: block;
+		}
+		
+		/* Style the hamburger menu */
+		.topnav a.icon {
+		  background: #4CAF50;;
+		  display: block;
+		  position: absolute;
+		  right: 0;
+		  top: 0;
+		}
+		
+		/* Add a grey background color on mouse-over */
+		.topnav a:hover {
+		  background-color: #ddd;
+		  color: black;
+		}
+		
+		/* Style the active link (or home/logo) */
+		.active {
+		  background-color: #4CAF50;
+		  color: white;
+		}
+
+		table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+		th, td {
+			padding: 15px;
+		}
+		</style>
+</head>
+
+<body style="margin:0px">
+	<!-- Top Navigation Menu -->
+	<div class="topnav">
+		<a href="index.html" class="active">Benchmark</a>
+		<!-- Navigation links (hidden by default) -->
+		<div id="myLinks">
+		<a href="index.html">Bench map</a>
+		<a href="add.html">Add Bench</a>
+		</div>
+		<!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+		<i class="fa fa-bars"></i>
+		</a>
+	</div>
+	<script>
+		function myFunction() {
+		  var x = document.getElementById("myLinks");
+		  if (x.style.display === "block") {
+			x.style.display = "none";
+		  } else {
+			x.style.display = "block";
+		  }
+		}
+		</script>
+
+	<center>
+		<h2>Leaderboard &#127942;</h2>
+		<table id="myTable">
+			
+		</table>
+	</center>
+	<script>
+		const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+
+		var locations = [
+		["Waldbank ",50.16937101196147,8.443256020545961,"11:29:55pm", 000,  " &#128102; von bBob"],
+		["great view! ",50.56056280914898,9.670806527137758,"11:29:55pm", 000,  " &#128102; von bBob"],
+		["teeest",50.56392220143661,9.679025855144408,"05:59:24pm",5348900,"  &#128102; von unbekannt"],
+		["Bushaltestelle Bank",50.195600606644305,8.48049581050873,"06:18:18pm",1990596,"  &#128102; von sabby"],
+		["Dettweiler Tempel Bänke",50.18914785492485,8.476440310478212,"06:19:32pm",8727799,"  &#128102; von sabby"],
+		["Hildablick einige Bänke",50.18679909426759,8.471864461898805,"06:21:21pm",17715,"  &#128102; von sabby"],
+		["Bank",50.18485087869408,8.465223312377931,"06:22:14pm",618685,"  &#128102; von sabby"],
+		["Bank",50.18512579700331,8.465158939361574,"06:22:48pm",403640,"  &#128102; von sabby"],
+		["Bank",50.185057121073925,8.465368151664736,"06:23:03pm",3970841,"  &#128102; von sabby"],
+		["Bänke Döner",50.18552756995619,8.466875553131105,"06:23:33pm",9287446,"  &#128102; von sabby"],
+		["Bank",50.18405044945262,8.465791940689089,"06:24:05pm",6630053,"  &#128102; von sabby"],
+		["kleine Bank",50.17549661691251,8.39822054388142,"11:22:43pm",4549596,"  &#128102; von BenchHunter69"],
+		["am Durchgang",50.17671316005046,8.39792008816811,"11:23:10pm",9723289,"  &#128102; von BenchHunter69"],
+		["Bushaltestelle",50.177468172643025,8.404837660299107,"11:23:49pm",5018057,"  &#128102; von BenchHunter69"],
+		["Sonnenuntergang",50.560555482264625,9.671048176417704,"11:24:34pm",7422061,"  &#128102; von BenchHunter69"],
+		["kleine Bank",50.174852490289304,8.44912949751363,"11:26:59pm",2813007,"  &#128102; von BenchHunter69"],
+		["Bank Spielplatz",50.19733534253188,8.485152125358583,"11:44:50pm",1682847,"  &#128102; von sabby"],
+		["",50.15829068094377,8.461081981658937,"12:03:52am",7827308,"  &#128102; von Santino"],
+		["Bank mit Feldaussicht",50.16393819744719,8.453303575515749,"12:09:39am",7654822,"  &#128102; von Santino"],
+		["Bank mit schönem Ausblick",50.563373950709305,9.671605825424196,"12:13:39am",9559443,"  &#128102; von Banker"],
+		["Andere schöne Bank",50.56316616000634,9.672088623046877,"12:14:28am",4561221,"  &#128102; von Banker"],
+		["Wie kann man denn die Parkbank vergessen",50.182759376213895,8.468613624572756,"12:17:47am",178883,"  &#128102; von Banker"],
+		["Reudige Tisch-Sitz kombination",50.18361784941416,8.477454185485842,"12:19:49am",6456433,"  &#128102; von Banker"],
+		["Reudige Tisch-Sitz kombination 2",50.183591471983284,8.477379083633425,"12:21:01am",6372558,"  &#128102; von Banker"],
+		["Suff und Buff Bank",50.17738205918047,8.401408195495607,"12:22:22am",969965,"  &#128102; von Banker"],
+		["Die Aussicht knallt beim saufen",50.17665429112302,8.404777050018312,"12:24:36am",8839126,"  &#128102; von Banker"],
+		["schöne Wurzel zum drauf sitzen",50.17667982301479,8.405721187591555,"12:25:54am",8540903,"  &#128102; von Banker"],
+		["Neben der Wurzel gibts auch ne normale Bank (zum Glück)",50.17673162436727,8.405753374099733,"12:26:55am",5507518,"  &#128102; von Banker"],
+		["Jugendtreff Eppenhain",50.17182168062932,8.393039703369142,"12:27:49am",6046832,"  &#128102; von Banker"],
+		["Klassiche Rentner-Stalker Bank",50.17643700955769,8.467304706573488,"12:30:33am",8707287,"  &#128102; von Banker"],
+		["Bank",50.17012566694684,8.403736352920534,"12:33:16am",2456257,"  &#128102; von Banker"],
+		["Sitz-Tisch kombination (nutzung nur mit Einwilligung des Bademeisters! Achtung Gefahr!!)",50.182711240707526,8.454408645629885,"12:36:21am",3592508,"  &#128102; von Banker"],
+		["",50.179429173813205,8.469407558441164,"06:26:37am",9351576,"  &#128102; von Santino"],
+		["",50.18555151832576,8.461114168167116,"06:30:39am",3034657,"  &#128102; von Santino"],
+		["",50.18538235941468,8.446372747421266,"06:33:49am",3028782,"  &#128102; von Santino"],
+		["",50.18160148540372,8.439924716949465,"06:52:57am",3290616,"  &#128102; von Santino"],
+		["Sitzbank",50.18021923759039,8.473645824874174,"11:19:56am",9576521,"  &#128102; von BenchHunter69"],
+		["Bushaltestelle mit Sitzbank",50.18652211118165,8.441721532730428,"11:22:11am",7854623,"  &#128102; von BenchHunter69"],
+
+		]
+
+		let names = [];
+		for(i = 0; i < locations.length; i++){
+			if(locations[i][5].substring(16) != "unbekannt"){
+				names.push(locations[i][5].substring(16));
+			}
+		}
+		console.log(names)
+		
+		let singlenames = [];
+		for(i = 0; i < names.length; i++){
+			if(!singlenames.includes(names[i])){
+				singlenames.push(names[i])
+			}
+		}
+		console.log(singlenames)
+
+		
+		let pairs = [];
+
+		for(i = 0; i < singlenames.length; i++){
+			tmp = countOccurrences(names, singlenames[i])
+			console.log(tmp, singlenames[i])
+			pairs.push([tmp, singlenames[i]])
+		}
+
+		pairs.sort((a, b) =>  b[0] - a[0]);
+		console.log(pairs)
+
+		var table = document.getElementById("myTable");
+		for(i = pairs.length -1; i >= 0; i--){
+			
+			var row = table.insertRow(0);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell0 = row.insertCell(0);
+			cell1.innerHTML = pairs[i][0];
+			if(pairs[i][0] >= 10){
+				cell2.innerHTML = "<div style=' vertical-align: middle;'><a href='personal.html?p="+pairs[i][1]+"'>"+ pairs[i][1] + "</a><span>&nbsp;&nbsp;</span><img src='l2.png' alt='l2'></div>";
+			}else{
+				cell2.innerHTML = "<a href='personal.html?p="+pairs[i][1]+"'>"+ pairs[i][1] + "</a><span>&nbsp;&nbsp;</span><img src='l1.png' alt='l1'>";
+			}
+			cell0.innerHTML = i +1;
+		}
+		var header = table.createTHead();
+		var row = header.insertRow(0);
+		var cell = row.insertCell(0);
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(0);
+		cell.innerHTML = "<b>Nickname</b>";
+		cell1.innerHTML = "<b>Benches</b>";
+		cell2.innerHTML = "<b>Rank</b>";
+		
+
+	</script>
+</body>
+</html>
