@@ -1,7 +1,7 @@
 {
   "name": "benchmark",
   "version": "1.0.0",
-  "description": "",
+  "description": "A tool to find becnhes around you",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
