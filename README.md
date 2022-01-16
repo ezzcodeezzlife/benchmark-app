@@ -1,8 +1,6 @@
 # benchmark-app
 
-Repo for: [benchmarkapp.herokuapp.com/](https://benchmarkapphosting2.herokuapp.com/)
-
-or download: [Google Play Store](https://play.google.com/store/apps/details?id=com.naturestudios.benchmark)
+Repo for: [Google Play Store](https://play.google.com/store/apps/details?id=com.naturestudios.benchmark)
 
 What is Benchmark?
 
