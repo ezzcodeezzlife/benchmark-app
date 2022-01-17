@@ -5,7 +5,7 @@ const entryBench = new mongoose.Schema({
     long: Number,
     beschreibung: String,
     nickname: String,
-
 });
+
 module.exports = mongoose.model('dbBench', entryBench);
 
