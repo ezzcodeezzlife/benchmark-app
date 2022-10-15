@@ -1,5 +1,8 @@
 # benchmark-app
 
+![image](https://user-images.githubusercontent.com/64021988/195997986-0e9eab87-e09d-42f1-958c-d9c42debb391.png)
+
+
 Repo for: [Benchmark in the Google Play Store](https://play.google.com/store/apps/details?id=com.naturestudios.benchmark)
 
 What is Benchmark?
